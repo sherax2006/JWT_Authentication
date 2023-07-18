@@ -15,6 +15,6 @@ app.use(secure);
 app.use(refreshToken)
 
 app.listen(process.env.PORT,()=>{
-    console.log("Running at 3500")
+    console.log("Running at 3000")
 })
  

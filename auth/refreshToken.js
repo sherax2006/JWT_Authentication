@@ -13,11 +13,10 @@ router.get("/auth/refershToken", (req,res)=>{
         if (err) {
           return res.status(401).json({ message: 'Invalid refresh token' });
         }
-                
         // Refresh token is valid
         // Generate a new access token
         const accessToken = jwt.sign({ user: decoded.user }, config.secret, { expiresIn: config.accessTokenExpiration});
-    
+        
         // Return the new access token to the client
         res.json({ accessToken });
       });

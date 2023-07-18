@@ -2,15 +2,14 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 
 function authenticateToken(req, res, next) {
-    const token = req.headers.access_token;
-
-  
+    // const token = req.headers.access_token;
+    const authHeader = req.headers['authorization'];
+    const token  = authHeader && authHeader.split(' ')[1]; 
     if (!token) {
       return res.status(401).json({ error: 'UnAuthorized User' });
     } 
     jwt.verify(token, config.secret, (err, decoded) => { 
       if (err) {
-
         return res.status(403).json({ error: 'Invalid access token' });
       }
       const {username,password} = decoded
@@ -22,4 +21,5 @@ function authenticateToken(req, res, next) {
   }  
 
 
-module.exports = authenticateToken
+module.exports = authenticateToken 
+  
