@@ -18,7 +18,7 @@ function authenticateToken(req, res, next) {
       req.user = {username,password}   
       next();
     });
-  }  
+}  
 
 
 module.exports = authenticateToken 
